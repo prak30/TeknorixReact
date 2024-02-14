@@ -1,10 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const title = job.title;
   const city = job.location.city;
   const state = job.location.state;
+  const id = job.id;
   const type = job.type === "" ? "Full Time" : job.type;
+  const applyUrl = job.applyUrl;
+
+  const handleApplyClick = () => {
+    window.location.href = applyUrl;
+  };
   return (
     <div>
       <p className="text-4xl font-bold">{title}</p>
@@ -19,10 +26,15 @@ const JobCard = ({ job }) => {
           </div>
         </div>
         <div>
-          <button className="bg-white hover:bg-gray-100 text-blue-500 font-bold py-2 px-4 rounded-full border border-blue-500">
+          <button
+            className="bg-white hover:bg-gray-100 text-blue-500 font-bold py-2 px-4 rounded-full border border-blue-500"
+            onClick={handleApplyClick}
+          >
             Apply
           </button>
-          <button className="ml-5 font-semibold">View</button>
+          <Link to={`/jobs/` + id} className="ml-5 font-semibold">
+            View
+          </Link>
         </div>
       </div>
     </div>
