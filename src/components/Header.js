@@ -1,8 +1,26 @@
 import React from "react";
 import useFetchJobs from "../utils/useFetchJobs";
+import { useState } from "react";
 
-const Header = ({ setSearchQuery }) => {
+const Header = ({
+  setSearchQuery,
+  setDepartment,
+  setLocation,
+  setJobFunction,
+}) => {
   const jobs = useFetchJobs();
+
+  const handleJobFunctionChange = (e) => {
+    setJobFunction(e.target.value);
+  };
+
+  const handleDepartmentChange = (e) => {
+    setDepartment(e.target.value);
+  };
+
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -20,23 +38,29 @@ const Header = ({ setSearchQuery }) => {
         <button className="absolute top-0 right-0 h-full px-4 py-2">🔍</button>
       </div>
       <div className="flex justify-between h-12">
-        <select className="w-1/3 mr-10 px-4 py-2">
+        <select
+          className="w-1/3 mr-10 px-4 py-2"
+          onChange={handleDepartmentChange}
+        >
           <option value="Department">Department</option>
           {jobs.map((job) => (
-            <option key={job.id} value={job.department}>
+            <option key={job.id} value={job?.department?.title}>
               {job?.department?.title ? job.department?.title : "QA"}
             </option>
           ))}
         </select>
-        <select className="w-1/3 mr-10">
+        <select className="w-1/3 mr-10" onChange={handleLocationChange}>
           <option value="Location">Location</option>
           {jobs.map((job) => (
-            <option key={job.id} value={job.location}>
+            <option
+              key={job.id}
+              value={`${job?.location?.city}, ${job?.location?.state}`}
+            >
               {job?.location?.city},{job?.location?.state}
             </option>
           ))}
         </select>
-        <select className="w-1/3">
+        <select className="w-1/3" onChange={handleJobFunctionChange}>
           <option value="Function">Function</option>
           {jobs.map((job) => (
             <option key={job.id} value={job.title}>
