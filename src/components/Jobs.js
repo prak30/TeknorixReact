@@ -1,22 +1,16 @@
 import React from "react";
 import JobCard from "./JobCard";
-import { JOBSOID_API } from "../utils/common";
-import { useEffect, useState } from "react";
+import useFetchJobs from "../utils/useFetchJobs";
 
-const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
-  useEffect(() => {
-    fetchJobs();
-  }, []);
-  const fetchJobs = async () => {
-    const response = await fetch(JOBSOID_API);
-    const data = await response.json();
-    console.log(data);
-    setJobs(data);
-  };
+const Jobs = ({ searchQuery }) => {
+  const jobs = useFetchJobs();
+
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="m-5 p-2 ">
-      {jobs.map((job) => (
+      {filteredJobs.map((job) => (
         <JobCard key={job.id} job={job} />
       ))}
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useJobProvider from "../utils/useJobProvider";
-import JobCard from "./JobCard";
 
 const Jd = () => {
   const { id } = useParams();
