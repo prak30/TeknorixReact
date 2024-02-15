@@ -42,7 +42,12 @@ function App() {
         jobFunction={jobFunction}
         clearFilters={clearFilters}
       />
-      <Jobs searchQuery={searchQuery} />
+      <Jobs
+        searchQuery={searchQuery}
+        department={department}
+        location={location}
+        jobFunction={jobFunction}
+      />
     </div>
   );
 }
