@@ -2,7 +2,6 @@ import Header from "./components/Header";
 import FilterMenu from "./components/FilterMenu";
 import Jobs from "./components/Jobs";
 import { useState } from "react";
-
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [department, setDepartment] = useState();

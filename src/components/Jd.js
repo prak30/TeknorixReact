@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useJobProvider from "../utils/useJobProvider";
+import SocialsShare from "./SocialsShare";
 
 const Jd = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const Jd = () => {
   };
 
   return (
-    <div className="m-2 p-5">
+    <div className="m-2 p-5 relative">
       <p className="text-lg font-semibold	">{company}</p>
       <p className="text-4xl font-bold	">{title}</p>
       <div className="flex">
@@ -38,6 +39,9 @@ const Jd = () => {
       </button>
       <hr className="h-1 mt-5" />
       <div dangerouslySetInnerHTML={{ __html: description }} />
+      <div className="absolute bottom-5 right-5">
+        <SocialsShare shareUrl={applyUrl} />
+      </div>
     </div>
   );
 };
