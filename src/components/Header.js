@@ -1,6 +1,5 @@
 import React from "react";
 import useFetchJobs from "../utils/useFetchJobs";
-import { useState } from "react";
 
 const Header = ({
   setSearchQuery,
