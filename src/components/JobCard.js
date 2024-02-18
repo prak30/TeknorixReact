@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const title = job.title;
@@ -8,6 +9,11 @@ const JobCard = ({ job }) => {
   const id = job.id;
   const type = job.type === "" ? "Full Time" : job.type;
   const applyUrl = job.applyUrl;
+  const navigate = useNavigate();
+
+  const viewJd = () => {
+    navigate(`/jobs/` + id);
+  };
 
   const handleApplyClick = () => {
     window.location.href = applyUrl;
@@ -32,9 +38,12 @@ const JobCard = ({ job }) => {
           >
             Apply
           </button>
-          <Link to={`/jobs/` + id} className="ml-5 font-semibold">
+          <button className="ml-5 font-semibold" onClick={viewJd}>
             View
-          </Link>
+          </button>
+          {/* <Link to={`/jobs/` + id} className="ml-5 font-semibold">
+            View
+          </Link> */}
         </div>
       </div>
     </div>
